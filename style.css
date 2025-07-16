@@ -3,15 +3,15 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f3f4f6;
-  font-family: sans-serif;
+  background-color: #e2e8f0;
+  font-family: Arial, sans-serif;
 }
 
 .calculator {
-  background: #ffffff;
-  padding: 20px;
+  background: white;
   border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   width: 260px;
 }
 
@@ -33,15 +33,15 @@ body {
 }
 
 button {
-  padding: 20px;
   font-size: 18px;
+  padding: 20px;
   border: none;
   border-radius: 10px;
-  background-color: #f1f5f9;
+  background: #f1f5f9;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #cbd5e1;
+  background: #cbd5e1;
 }
