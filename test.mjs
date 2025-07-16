@@ -1,23 +1,12 @@
-import { sumar, restar, multiplicar, dividir } from './calculator.js';
+import assert from 'node:assert/strict';
+import { evaluateExpression } from './calculator.js';
 
-function test(description, actual, expected) {
-  if (actual === expected) {
-    console.log(`✅ ${description}`);
-  } else {
-    console.error(`❌ ${description}: esperado ${expected}, obtenido ${actual}`);
-    process.exit(1);
-  }
-}
+console.log("Iniciando pruebas de la calculadora...");
 
-test("Suma 5 + 3", sumar(5, 3), 8);
-test("Resta 10 - 6", restar(10, 6), 4);
-test("Multiplica 2 * 3", multiplicar(2, 3), 6);
-test("Divide 9 / 3", dividir(9, 3), 3);
+assert.equal(evaluateExpression("2+3"), 5);
+assert.equal(evaluateExpression("4*5"), 20);
+assert.equal(evaluateExpression("10/2"), 5);
+assert.equal(evaluateExpression("3+2*2"), 7);
+assert.equal(evaluateExpression("invalid"), "Error");
 
-try {
-  dividir(4, 0);
-  console.error("❌ División por cero no lanzó error");
-  process.exit(1);
-} catch {
-  console.log("✅ División por cero lanza error");
-}
+console.log("✅ Todas las pruebas pasaron correctamente.");
