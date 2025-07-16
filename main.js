@@ -1,44 +1,53 @@
 import { sumar, restar, multiplicar, dividir } from './calculator.js';
 
-let display = document.getElementById('display');
-let current = '';
-let previous = '';
-let operation = null;
+let display = document.getElementById("display");
+let current = "";
+let previous = "";
+let operator = null;
 
-window.appendNumber = function (num) {
+window.append = function(num) {
   current += num;
   display.value = current;
 };
 
-window.setOperation = function (op) {
-  if (current === '') return;
-  if (previous !== '') calculate();
-  operation = op;
+window.setOp = function(op) {
+  if (current === "") return;
+  if (previous !== "") {
+    calculate();
+  }
+  operator = op;
   previous = current;
-  current = '';
+  current = "";
 };
 
-window.clearDisplay = function () {
-  current = '';
-  previous = '';
-  operation = null;
-  display.value = '';
+window.clearDisplay = function() {
+  current = "";
+  previous = "";
+  operator = null;
+  display.value = "";
 };
 
-window.calculate = function () {
-  let result;
+window.calculate = function() {
+  if (operator === null || current === "" || previous === "") return;
   const a = parseFloat(previous);
   const b = parseFloat(current);
-  if (isNaN(a) || isNaN(b)) return;
-  switch (operation) {
-    case '+': result = sumar(a, b); break;
-    case '-': result = restar(a, b); break;
-    case '*': result = multiplicar(a, b); break;
-    case '/': result = dividir(a, b); break;
-    default: return;
+  let result;
+
+  try {
+    switch (operator) {
+      case '+': result = sumar(a, b); break;
+      case '-': result = restar(a, b); break;
+      case '*': result = multiplicar(a, b); break;
+      case '/': result = dividir(a, b); break;
+    }
+    current = result.toString();
+    operator = null;
+    previous = "";
+    display.value = current;
+  } catch (error) {
+    display.value = "Error";
+    current = "";
+    previous = "";
+    operator = null;
   }
-  current = result.toString();
-  operation = null;
-  previous = '';
-  display.value = current;
 };
