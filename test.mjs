@@ -1,12 +1,32 @@
-import assert from 'node:assert/strict';
 import { evaluateExpression } from './calculator.js';
 
-console.log("Iniciando pruebas de la calculadora...");
+const tests = [
+  { input: "2+3", expected: 5 },
+  { input: "4*5", expected: 20 },
+  { input: "10/2", expected: 5 },
+  { input: "3+2*2", expected: 7 },
+  { input: "invalid", expected: "Error" },
+];
 
-assert.equal(evaluateExpression("2+3"), 5);
-assert.equal(evaluateExpression("4*5"), 20);
-assert.equal(evaluateExpression("10/2"), 5);
-assert.equal(evaluateExpression("3+2*2"), 7);
-assert.equal(evaluateExpression("invalid"), "Error");
+let passed = 0;
 
-console.log("✅ Todas las pruebas pasaron correctamente.");
+console.log("🔍 Ejecutando pruebas unitarias para la calculadora:\n");
+
+for (const { input, expected } of tests) {
+  const result = evaluateExpression(input);
+  const success = result === expected;
+
+  if (success) {
+    console.log(`✅ "${input}" = ${result} (esperado: ${expected})`);
+    passed++;
+  } else {
+    console.error(`❌ "${input}" => ${result} (esperado: ${expected})`);
+  }
+}
+
+console.log(`\n🧪 Resultados: ${passed}/${tests.length} pruebas pasaron.\n`);
+
+if (passed !== tests.length) {
+  // Falla el proceso si alguna prueba falla (útil para GitHub Actions)
+  process.exit(1);
+}
