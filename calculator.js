@@ -1,7 +1,8 @@
-export function evaluateExpression(expr) {
+export function evaluateExpression(expression) {
   try {
-    const result = eval(expr);
-    return result;
+    const sanitized = expression.replace(/[^-()\d/*+.]/g, '');
+    const result = eval(sanitized);
+    return Number.isFinite(result) ? result.toString() : "Error";
   } catch {
     return "Error";
   }
