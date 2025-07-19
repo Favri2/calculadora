@@ -14,10 +14,14 @@ window.clearDisplay = function() {
   display.value = "0";
 };
 
+window.deleteLast = function() {
+  if (display.value.length > 1) {
+    display.value = display.value.slice(0, -1);
+  } else {
+    display.value = "0";
+  }
+};
+
 window.calculate = function() {
   display.value = evaluateExpression(display.value);
-};
-window.deleteLast = function () {
-  const display = document.getElementById("display");
-  display.value = display.value.slice(0, -1);
 };
