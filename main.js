@@ -17,3 +17,7 @@ window.clearDisplay = function() {
 window.calculate = function() {
   display.value = evaluateExpression(display.value);
 };
+window.deleteLast = function () {
+  const display = document.getElementById("display");
+  display.value = display.value.slice(0, -1);
+};
